@@ -1,0 +1,4035 @@
+{
+  "info": {
+    "name": "API de Manutenção Industrial - NP1",
+    "description": "Coleção de testes da API de Controle de Manutenção Industrial. Rode na ordem (Collection Runner) com o banco de dados vazio: pare o servidor, rode \"npm run zerar\" e depois \"npm start\".",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Equipamentos (CRUD)",
+      "item": [
+        {
+          "name": "Cadastrar equipamento",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Cadastra um equipamento. Campos obrigatórios: nome, modelo, fabricante, data_instalacao (AAAA-MM-DD). status é opcional (padrão \"Ativo\"; aceitos: Ativo, Em manutenção, Inativo).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Torno CNC\",\n  \"modelo\": \"TX-500\",\n  \"fabricante\": \"Romi\",\n  \"data_instalacao\": \"2022-03-15\",\n  \"status\": \"Ativo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Cadastra um equipamento. Campos obrigatórios: nome, modelo, fabricante, data_instalacao (AAAA-MM-DD). status é opcional (padrão \"Ativo\"; aceitos: Ativo, Em manutenção, Inativo).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Torno CNC\",\n  \"modelo\": \"TX-500\",\n  \"fabricante\": \"Romi\",\n  \"data_instalacao\": \"2022-03-15\",\n  \"status\": \"Ativo\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"nome\": \"Torno CNC\",\n  \"modelo\": \"TX-500\",\n  \"fabricante\": \"Romi\",\n  \"data_instalacao\": \"2022-03-15\",\n  \"status\": \"Ativo\",\n  \"periodicidade_dias\": null,\n  \"ultima_manutencao\": null,\n  \"proxima_manutencao\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cadastrar segundo equipamento",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Cadastra a Prensa Hidráulica (usada nos próximos testes).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Prensa Hidráulica\",\n  \"modelo\": \"PH-200\",\n  \"fabricante\": \"Schuler\",\n  \"data_instalacao\": \"2021-07-10\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Cadastra a Prensa Hidráulica (usada nos próximos testes).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Prensa Hidráulica\",\n  \"modelo\": \"PH-200\",\n  \"fabricante\": \"Schuler\",\n  \"data_instalacao\": \"2021-07-10\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"nome\": \"Prensa Hidráulica\",\n  \"modelo\": \"PH-200\",\n  \"fabricante\": \"Schuler\",\n  \"data_instalacao\": \"2021-07-10\",\n  \"status\": \"Ativo\",\n  \"periodicidade_dias\": null,\n  \"ultima_manutencao\": null,\n  \"proxima_manutencao\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cadastrar terceiro equipamento",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Cadastra o Compressor de Ar (usado no teste de exclusão).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Compressor de Ar\",\n  \"modelo\": \"CA-75\",\n  \"fabricante\": \"Schulz\",\n  \"data_instalacao\": \"2023-01-20\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Cadastra o Compressor de Ar (usado no teste de exclusão).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Compressor de Ar\",\n  \"modelo\": \"CA-75\",\n  \"fabricante\": \"Schulz\",\n  \"data_instalacao\": \"2023-01-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 3,\n  \"nome\": \"Compressor de Ar\",\n  \"modelo\": \"CA-75\",\n  \"fabricante\": \"Schulz\",\n  \"data_instalacao\": \"2023-01-20\",\n  \"status\": \"Ativo\",\n  \"periodicidade_dias\": null,\n  \"ultima_manutencao\": null,\n  \"proxima_manutencao\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar equipamentos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Lista todos os equipamentos cadastrados."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Lista todos os equipamentos cadastrados."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Torno CNC\",\n    \"modelo\": \"TX-500\",\n    \"fabricante\": \"Romi\",\n    \"data_instalacao\": \"2022-03-15\",\n    \"status\": \"Ativo\",\n    \"periodicidade_dias\": null,\n    \"ultima_manutencao\": null,\n    \"proxima_manutencao\": null\n  },\n  {\n    \"id\": 2,\n    \"nome\": \"Prensa Hidráulica\",\n    \"modelo\": \"PH-200\",\n    \"fabricante\": \"Schuler\",\n    \"data_instalacao\": \"2021-07-10\",\n    \"status\": \"Ativo\",\n    \"periodicidade_dias\": null,\n    \"ultima_manutencao\": null,\n    \"proxima_manutencao\": null\n  },\n  {\n    \"id\": 3,\n    \"nome\": \"Compressor de Ar\",\n    \"modelo\": \"CA-75\",\n    \"fabricante\": \"Schulz\",\n    \"data_instalacao\": \"2023-01-20\",\n    \"status\": \"Ativo\",\n    \"periodicidade_dias\": null,\n    \"ultima_manutencao\": null,\n    \"proxima_manutencao\": null\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Buscar equipamento por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "1"
+              ]
+            },
+            "description": "Busca um equipamento pelo ID."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "1"
+                  ]
+                },
+                "description": "Busca um equipamento pelo ID."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"nome\": \"Torno CNC\",\n  \"modelo\": \"TX-500\",\n  \"fabricante\": \"Romi\",\n  \"data_instalacao\": \"2022-03-15\",\n  \"status\": \"Ativo\",\n  \"periodicidade_dias\": null,\n  \"ultima_manutencao\": null,\n  \"proxima_manutencao\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Atualizar equipamento (Problema 1)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "1"
+              ]
+            },
+            "description": "Corrige os dados de um equipamento. Só os campos enviados são alterados.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"modelo\": \"TX-550\",\n  \"fabricante\": \"Romi S.A.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "1"
+                  ]
+                },
+                "description": "Corrige os dados de um equipamento. Só os campos enviados são alterados.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"modelo\": \"TX-550\",\n  \"fabricante\": \"Romi S.A.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"nome\": \"Torno CNC\",\n  \"modelo\": \"TX-550\",\n  \"fabricante\": \"Romi S.A.\",\n  \"data_instalacao\": \"2022-03-15\",\n  \"status\": \"Ativo\",\n  \"periodicidade_dias\": null,\n  \"ultima_manutencao\": null,\n  \"proxima_manutencao\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Excluir equipamento sem vínculos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "3"
+              ]
+            },
+            "description": "Exclui um equipamento. Só é permitido se ele não tiver ordens de serviço nem defeitos vinculados."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "3"
+                  ]
+                },
+                "description": "Exclui um equipamento. Só é permitido se ele não tiver ordens de serviço nem defeitos vinculados."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"mensagem\": \"Equipamento excluído com sucesso\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Manutenção Preventiva",
+      "item": [
+        {
+          "name": "Registrar periodicidade - Torno CNC",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/preventivas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "preventivas",
+                "1"
+              ]
+            },
+            "description": "Registra a periodicidade (em dias) e a última manutenção do equipamento (o ID da URL é do equipamento). A próxima manutenção é calculada: última + periodicidade.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"periodicidade_dias\": 30,\n  \"ultima_manutencao\": \"2026-08-01\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/preventivas/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "preventivas",
+                    "1"
+                  ]
+                },
+                "description": "Registra a periodicidade (em dias) e a última manutenção do equipamento (o ID da URL é do equipamento). A próxima manutenção é calculada: última + periodicidade.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"periodicidade_dias\": 30,\n  \"ultima_manutencao\": \"2026-08-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"equipamento_id\": 1,\n  \"nome\": \"Torno CNC\",\n  \"periodicidade_dias\": 30,\n  \"ultima_manutencao\": \"2026-08-01\",\n  \"proxima_manutencao\": \"2026-08-31\",\n  \"situacao\": \"VENCIDA\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar periodicidade - Prensa Hidráulica",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/preventivas/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "preventivas",
+                "2"
+              ]
+            },
+            "description": "Registra a periodicidade da Prensa Hidráulica.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"periodicidade_dias\": 90,\n  \"ultima_manutencao\": \"2026-09-15\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/preventivas/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "preventivas",
+                    "2"
+                  ]
+                },
+                "description": "Registra a periodicidade da Prensa Hidráulica.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"periodicidade_dias\": 90,\n  \"ultima_manutencao\": \"2026-09-15\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"equipamento_id\": 2,\n  \"nome\": \"Prensa Hidráulica\",\n  \"periodicidade_dias\": 90,\n  \"ultima_manutencao\": \"2026-09-15\",\n  \"proxima_manutencao\": \"2026-12-14\",\n  \"situacao\": \"Em dia\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar controle de preventivas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/preventivas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "preventivas"
+              ]
+            },
+            "description": "Lista a periodicidade, a última e a próxima manutenção de cada equipamento, com a situação (Em dia ou VENCIDA)."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/preventivas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "preventivas"
+                  ]
+                },
+                "description": "Lista a periodicidade, a última e a próxima manutenção de cada equipamento, com a situação (Em dia ou VENCIDA)."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Torno CNC\",\n    \"periodicidade_dias\": 30,\n    \"ultima_manutencao\": \"2026-08-01\",\n    \"proxima_manutencao\": \"2026-08-31\",\n    \"situacao\": \"VENCIDA\"\n  },\n  {\n    \"id\": 2,\n    \"nome\": \"Prensa Hidráulica\",\n    \"periodicidade_dias\": 90,\n    \"ultima_manutencao\": \"2026-09-15\",\n    \"proxima_manutencao\": \"2026-12-14\",\n    \"situacao\": \"Em dia\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Alerta de preventivas vencidas (Problema 3)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/preventivas/vencidas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "preventivas",
+                "vencidas"
+              ]
+            },
+            "description": "Lista só os equipamentos com a manutenção preventiva vencida (próxima manutenção antes de hoje), com mensagem de alerta."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/preventivas/vencidas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "preventivas",
+                    "vencidas"
+                  ]
+                },
+                "description": "Lista só os equipamentos com a manutenção preventiva vencida (próxima manutenção antes de hoje), com mensagem de alerta."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"total_vencidas\": 1,\n  \"equipamentos\": [\n    {\n      \"id\": 1,\n      \"nome\": \"Torno CNC\",\n      \"periodicidade_dias\": 30,\n      \"ultima_manutencao\": \"2026-08-01\",\n      \"proxima_manutencao\": \"2026-08-31\",\n      \"alerta\": \"ATENÇÃO: manutenção preventiva vencida desde 2026-08-31\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Ordens de Serviço (CRUD)",
+      "item": [
+        {
+          "name": "Abrir ordem de serviço corretiva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "Abre uma ordem de serviço. Campos obrigatórios: equipamento_id, tipo (Preventiva ou Corretiva), responsavel. data_abertura é opcional (padrão: hoje). A ordem começa com status \"Aberta\" e o equipamento passa para \"Em manutenção\".",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "Abre uma ordem de serviço. Campos obrigatórios: equipamento_id, tipo (Preventiva ou Corretiva), responsavel. data_abertura é opcional (padrão: hoje). A ordem começa com status \"Aberta\" e o equipamento passa para \"Em manutenção\".",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": null,\n  \"responsavel\": \"Carlos Silva\",\n  \"status\": \"Aberta\",\n  \"equipamento\": \"Torno CNC\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Abrir ordem de serviço preventiva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "Abre uma ordem de serviço preventiva para a Prensa Hidráulica.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 2,\n  \"tipo\": \"Preventiva\",\n  \"responsavel\": \"Ana Souza\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "Abre uma ordem de serviço preventiva para a Prensa Hidráulica.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 2,\n  \"tipo\": \"Preventiva\",\n  \"responsavel\": \"Ana Souza\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"equipamento_id\": 2,\n  \"tipo\": \"Preventiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": null,\n  \"responsavel\": \"Ana Souza\",\n  \"status\": \"Aberta\",\n  \"equipamento\": \"Prensa Hidráulica\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar ordens de serviço",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "Lista todas as ordens de serviço com o nome do equipamento."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "Lista todas as ordens de serviço com o nome do equipamento."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"equipamento_id\": 1,\n    \"tipo\": \"Corretiva\",\n    \"data_abertura\": \"2026-10-08\",\n    \"data_conclusao\": null,\n    \"responsavel\": \"Carlos Silva\",\n    \"status\": \"Aberta\",\n    \"equipamento\": \"Torno CNC\"\n  },\n  {\n    \"id\": 2,\n    \"equipamento_id\": 2,\n    \"tipo\": \"Preventiva\",\n    \"data_abertura\": \"2026-10-08\",\n    \"data_conclusao\": null,\n    \"responsavel\": \"Ana Souza\",\n    \"status\": \"Aberta\",\n    \"equipamento\": \"Prensa Hidráulica\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Buscar ordem de serviço por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "1"
+              ]
+            },
+            "description": "Busca uma ordem de serviço pelo ID."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "1"
+                  ]
+                },
+                "description": "Busca uma ordem de serviço pelo ID."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": null,\n  \"responsavel\": \"Carlos Silva\",\n  \"status\": \"Aberta\",\n  \"equipamento\": \"Torno CNC\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Atualizar ordem de serviço",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "1"
+              ]
+            },
+            "description": "Altera uma ordem de serviço (status aceitos: Aberta, Em andamento, Finalizada). Só os campos enviados são alterados. Ordem já finalizada não pode ser alterada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Em andamento\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "1"
+                  ]
+                },
+                "description": "Altera uma ordem de serviço (status aceitos: Aberta, Em andamento, Finalizada). Só os campos enviados são alterados. Ordem já finalizada não pode ser alterada.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Em andamento\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": null,\n  \"responsavel\": \"Carlos Silva\",\n  \"status\": \"Em andamento\",\n  \"equipamento\": \"Torno CNC\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Equipamentos em manutenção (Problema 7)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/em-manutencao",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "em-manutencao"
+              ]
+            },
+            "description": "Lista os equipamentos com status \"Em manutenção\"."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/em-manutencao",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "em-manutencao"
+                  ]
+                },
+                "description": "Lista os equipamentos com status \"Em manutenção\"."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Torno CNC\",\n    \"modelo\": \"TX-550\",\n    \"fabricante\": \"Romi S.A.\",\n    \"data_instalacao\": \"2022-03-15\",\n    \"status\": \"Em manutenção\",\n    \"periodicidade_dias\": 30,\n    \"ultima_manutencao\": \"2026-08-01\",\n    \"proxima_manutencao\": \"2026-08-31\"\n  },\n  {\n    \"id\": 2,\n    \"nome\": \"Prensa Hidráulica\",\n    \"modelo\": \"PH-200\",\n    \"fabricante\": \"Schuler\",\n    \"data_instalacao\": \"2021-07-10\",\n    \"status\": \"Em manutenção\",\n    \"periodicidade_dias\": 90,\n    \"ultima_manutencao\": \"2026-09-15\",\n    \"proxima_manutencao\": \"2026-12-14\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Peças Substituídas (CRUD)",
+      "item": [
+        {
+          "name": "Registrar peça substituída",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Registra uma peça trocada em uma ordem de serviço. Campos obrigatórios: ordem_servico_id, nome, codigo, quantidade, custo_unitario. data_substituicao é opcional (padrão: hoje).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 2,\n  \"custo_unitario\": 35.5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Registra uma peça trocada em uma ordem de serviço. Campos obrigatórios: ordem_servico_id, nome, codigo, quantidade, custo_unitario. data_substituicao é opcional (padrão: hoje).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 2,\n  \"custo_unitario\": 35.5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 2,\n  \"custo_unitario\": 35.5,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar peça - Correia",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Registra uma correia na ordem de serviço 1.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Correia em V A42\",\n  \"codigo\": \"COR-A42\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 89.9\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Registra uma correia na ordem de serviço 1.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Correia em V A42\",\n  \"codigo\": \"COR-A42\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 89.9\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Correia em V A42\",\n  \"codigo\": \"COR-A42\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 89.9,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar peça - Rolamento na OS 2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Registra o mesmo rolamento em outra ordem de serviço (para o histórico).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 2,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 4,\n  \"custo_unitario\": 35.5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Registra o mesmo rolamento em outra ordem de serviço (para o histórico).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 2,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 4,\n  \"custo_unitario\": 35.5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 3,\n  \"ordem_servico_id\": 2,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 4,\n  \"custo_unitario\": 35.5,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar peça - Filtro",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Registra um filtro (usado no teste de exclusão).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Filtro de óleo\",\n  \"codigo\": \"FIL-010\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 42\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Registra um filtro (usado no teste de exclusão).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Filtro de óleo\",\n  \"codigo\": \"FIL-010\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 42\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 4,\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Filtro de óleo\",\n  \"codigo\": \"FIL-010\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 42,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar peças",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Lista todas as peças substituídas."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Lista todas as peças substituídas."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"ordem_servico_id\": 1,\n    \"nome\": \"Rolamento 6205\",\n    \"codigo\": \"ROL-6205\",\n    \"quantidade\": 2,\n    \"custo_unitario\": 35.5,\n    \"data_substituicao\": \"2026-10-08\"\n  },\n  {\n    \"id\": 2,\n    \"ordem_servico_id\": 1,\n    \"nome\": \"Correia em V A42\",\n    \"codigo\": \"COR-A42\",\n    \"quantidade\": 1,\n    \"custo_unitario\": 89.9,\n    \"data_substituicao\": \"2026-10-08\"\n  },\n  {\n    \"id\": 3,\n    \"ordem_servico_id\": 2,\n    \"nome\": \"Rolamento 6205\",\n    \"codigo\": \"ROL-6205\",\n    \"quantidade\": 4,\n    \"custo_unitario\": 35.5,\n    \"data_substituicao\": \"2026-10-08\"\n  },\n  {\n    \"id\": 4,\n    \"ordem_servico_id\": 1,\n    \"nome\": \"Filtro de óleo\",\n    \"codigo\": \"FIL-010\",\n    \"quantidade\": 1,\n    \"custo_unitario\": 42,\n    \"data_substituicao\": \"2026-10-08\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Buscar peça por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas",
+                "1"
+              ]
+            },
+            "description": "Busca uma peça pelo ID."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas",
+                    "1"
+                  ]
+                },
+                "description": "Busca uma peça pelo ID."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 2,\n  \"custo_unitario\": 35.5,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Atualizar peça",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas",
+                "1"
+              ]
+            },
+            "description": "Altera uma peça. Só os campos enviados são alterados. Não é permitido se a ordem de serviço estiver finalizada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantidade\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas",
+                    "1"
+                  ]
+                },
+                "description": "Altera uma peça. Só os campos enviados são alterados. Não é permitido se a ordem de serviço estiver finalizada.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantidade\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Rolamento 6205\",\n  \"codigo\": \"ROL-6205\",\n  \"quantidade\": 3,\n  \"custo_unitario\": 35.5,\n  \"data_substituicao\": \"2026-10-08\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Excluir peça",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas/4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas",
+                "4"
+              ]
+            },
+            "description": "Exclui uma peça. Não é permitido se a ordem de serviço estiver finalizada."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas/4",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas",
+                    "4"
+                  ]
+                },
+                "description": "Exclui uma peça. Não é permitido se a ordem de serviço estiver finalizada."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"mensagem\": \"Peça excluída com sucesso\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Custo total da ordem de serviço (Problema 8)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/1/custo-total",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "1",
+                "custo-total"
+              ]
+            },
+            "description": "Mostra as peças da ordem de serviço, o subtotal de cada uma (quantidade x custo unitário) e o custo total."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/1/custo-total",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "1",
+                    "custo-total"
+                  ]
+                },
+                "description": "Mostra as peças da ordem de serviço, o subtotal de cada uma (quantidade x custo unitário) e o custo total."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"ordem_servico_id\": 1,\n  \"pecas\": [\n    {\n      \"nome\": \"Rolamento 6205\",\n      \"codigo\": \"ROL-6205\",\n      \"quantidade\": 3,\n      \"custo_unitario\": 35.5,\n      \"subtotal\": 106.5\n    },\n    {\n      \"nome\": \"Correia em V A42\",\n      \"codigo\": \"COR-A42\",\n      \"quantidade\": 1,\n      \"custo_unitario\": 89.9,\n      \"subtotal\": 89.9\n    }\n  ],\n  \"custo_total\": 196.4\n}"
+            }
+          ]
+        },
+        {
+          "name": "Histórico de uma peça (Problema 4)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas/historico/ROL-6205?ano=2026",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas",
+                "historico",
+                "ROL-6205"
+              ],
+              "query": [
+                {
+                  "key": "ano",
+                  "value": "2026"
+                }
+              ]
+            },
+            "description": "Mostra todas as vezes que a peça (pelo código) foi substituída, com data, ordem de serviço e equipamento. O filtro ?ano= é opcional."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas/historico/ROL-6205?ano=2026",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas",
+                    "historico",
+                    "ROL-6205"
+                  ],
+                  "query": [
+                    {
+                      "key": "ano",
+                      "value": "2026"
+                    }
+                  ]
+                },
+                "description": "Mostra todas as vezes que a peça (pelo código) foi substituída, com data, ordem de serviço e equipamento. O filtro ?ano= é opcional."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"codigo\": \"ROL-6205\",\n  \"vezes_substituida\": 2,\n  \"quantidade_total\": 7,\n  \"historico\": [\n    {\n      \"id\": 1,\n      \"nome\": \"Rolamento 6205\",\n      \"codigo\": \"ROL-6205\",\n      \"quantidade\": 3,\n      \"custo_unitario\": 35.5,\n      \"data_substituicao\": \"2026-10-08\",\n      \"ordem_servico_id\": 1,\n      \"equipamento\": \"Torno CNC\"\n    },\n    {\n      \"id\": 3,\n      \"nome\": \"Rolamento 6205\",\n      \"codigo\": \"ROL-6205\",\n      \"quantidade\": 4,\n      \"custo_unitario\": 35.5,\n      \"data_substituicao\": \"2026-10-08\",\n      \"ordem_servico_id\": 2,\n      \"equipamento\": \"Prensa Hidráulica\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5. Defeitos (CRUD)",
+      "item": [
+        {
+          "name": "Registrar defeito",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos"
+              ]
+            },
+            "description": "Registra um defeito. Campos obrigatórios: equipamento_id, descricao, severidade (Baixo, Médio, Alto, Crítico). data_registro é opcional (padrão: hoje).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Ruído anormal no eixo principal\",\n  \"severidade\": \"Médio\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos"
+                  ]
+                },
+                "description": "Registra um defeito. Campos obrigatórios: equipamento_id, descricao, severidade (Baixo, Médio, Alto, Crítico). data_registro é opcional (padrão: hoje).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Ruído anormal no eixo principal\",\n  \"severidade\": \"Médio\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"descricao\": \"Ruído anormal no eixo principal\",\n  \"severidade\": \"Médio\",\n  \"data_registro\": \"2026-10-08\",\n  \"equipamento\": \"Torno CNC\",\n  \"prioridade\": \"Normal\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar defeito crítico (Problema 5)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos"
+              ]
+            },
+            "description": "Um defeito \"Crítico\" volta com prioridade URGENTE e uma mensagem de alerta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 2,\n  \"descricao\": \"Vazamento de óleo no cilindro hidráulico\",\n  \"severidade\": \"Crítico\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos"
+                  ]
+                },
+                "description": "Um defeito \"Crítico\" volta com prioridade URGENTE e uma mensagem de alerta.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 2,\n  \"descricao\": \"Vazamento de óleo no cilindro hidráulico\",\n  \"severidade\": \"Crítico\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"equipamento_id\": 2,\n  \"descricao\": \"Vazamento de óleo no cilindro hidráulico\",\n  \"severidade\": \"Crítico\",\n  \"data_registro\": \"2026-10-08\",\n  \"equipamento\": \"Prensa Hidráulica\",\n  \"prioridade\": \"URGENTE\",\n  \"alerta\": \"DEFEITO CRÍTICO: atendimento imediato!\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Listar defeitos (mais graves primeiro)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos"
+              ]
+            },
+            "description": "Lista os defeitos ordenados por gravidade: Crítico, Alto, Médio, Baixo."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos"
+                  ]
+                },
+                "description": "Lista os defeitos ordenados por gravidade: Crítico, Alto, Médio, Baixo."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 2,\n    \"equipamento_id\": 2,\n    \"descricao\": \"Vazamento de óleo no cilindro hidráulico\",\n    \"severidade\": \"Crítico\",\n    \"data_registro\": \"2026-10-08\",\n    \"equipamento\": \"Prensa Hidráulica\",\n    \"prioridade\": \"URGENTE\",\n    \"alerta\": \"DEFEITO CRÍTICO: atendimento imediato!\"\n  },\n  {\n    \"id\": 1,\n    \"equipamento_id\": 1,\n    \"descricao\": \"Ruído anormal no eixo principal\",\n    \"severidade\": \"Médio\",\n    \"data_registro\": \"2026-10-08\",\n    \"equipamento\": \"Torno CNC\",\n    \"prioridade\": \"Normal\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Buscar defeito por ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos",
+                "1"
+              ]
+            },
+            "description": "Busca um defeito pelo ID."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos",
+                    "1"
+                  ]
+                },
+                "description": "Busca um defeito pelo ID."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"descricao\": \"Ruído anormal no eixo principal\",\n  \"severidade\": \"Médio\",\n  \"data_registro\": \"2026-10-08\",\n  \"equipamento\": \"Torno CNC\",\n  \"prioridade\": \"Normal\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Atualizar defeito",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos",
+                "1"
+              ]
+            },
+            "description": "Altera um defeito. Só os campos enviados são alterados.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"severidade\": \"Alto\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos",
+                    "1"
+                  ]
+                },
+                "description": "Altera um defeito. Só os campos enviados são alterados.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"severidade\": \"Alto\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"equipamento_id\": 1,\n  \"descricao\": \"Ruído anormal no eixo principal\",\n  \"severidade\": \"Alto\",\n  \"data_registro\": \"2026-10-08\",\n  \"equipamento\": \"Torno CNC\",\n  \"prioridade\": \"Normal\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Registrar defeito para excluir",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos"
+              ]
+            },
+            "description": "Registra um defeito leve (usado no teste de exclusão).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Pintura descascada na carcaça\",\n  \"severidade\": \"Baixo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos"
+                  ]
+                },
+                "description": "Registra um defeito leve (usado no teste de exclusão).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Pintura descascada na carcaça\",\n  \"severidade\": \"Baixo\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 3,\n  \"equipamento_id\": 1,\n  \"descricao\": \"Pintura descascada na carcaça\",\n  \"severidade\": \"Baixo\",\n  \"data_registro\": \"2026-10-08\",\n  \"equipamento\": \"Torno CNC\",\n  \"prioridade\": \"Normal\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Excluir defeito",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos",
+                "3"
+              ]
+            },
+            "description": "Exclui um defeito."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos/3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos",
+                    "3"
+                  ]
+                },
+                "description": "Exclui um defeito."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"mensagem\": \"Defeito excluído com sucesso\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "6. Finalizar e excluir Ordem de Serviço",
+      "item": [
+        {
+          "name": "Finalizar ordem de serviço preventiva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "2"
+              ]
+            },
+            "description": "Finaliza a ordem de serviço. A data de conclusão vira a data de hoje, o equipamento volta para \"Ativo\" (se não tiver outra ordem aberta) e, por ser preventiva, a última e a próxima manutenção do equipamento são atualizadas.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"Finalizada\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "2"
+                  ]
+                },
+                "description": "Finaliza a ordem de serviço. A data de conclusão vira a data de hoje, o equipamento volta para \"Ativo\" (se não tiver outra ordem aberta) e, por ser preventiva, a última e a próxima manutenção do equipamento são atualizadas.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"Finalizada\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 2,\n  \"equipamento_id\": 2,\n  \"tipo\": \"Preventiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": \"2026-10-08\",\n  \"responsavel\": \"Ana Souza\",\n  \"status\": \"Finalizada\",\n  \"equipamento\": \"Prensa Hidráulica\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Conferir preventiva atualizada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/preventivas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "preventivas"
+              ]
+            },
+            "description": "A Prensa Hidráulica agora tem a última manutenção = hoje e a próxima recalculada."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/preventivas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "preventivas"
+                  ]
+                },
+                "description": "A Prensa Hidráulica agora tem a última manutenção = hoje e a próxima recalculada."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"nome\": \"Torno CNC\",\n    \"periodicidade_dias\": 30,\n    \"ultima_manutencao\": \"2026-08-01\",\n    \"proxima_manutencao\": \"2026-08-31\",\n    \"situacao\": \"VENCIDA\"\n  },\n  {\n    \"id\": 2,\n    \"nome\": \"Prensa Hidráulica\",\n    \"periodicidade_dias\": 90,\n    \"ultima_manutencao\": \"2026-10-08\",\n    \"proxima_manutencao\": \"2027-01-06\",\n    \"situacao\": \"Em dia\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Abrir ordem de serviço para excluir",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 Created\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "Abre uma ordem de serviço que será excluída no próximo teste.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "Abre uma ordem de serviço que será excluída no próximo teste.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"id\": 3,\n  \"equipamento_id\": 1,\n  \"tipo\": \"Corretiva\",\n  \"data_abertura\": \"2026-10-08\",\n  \"data_conclusao\": null,\n  \"responsavel\": \"Carlos Silva\",\n  \"status\": \"Aberta\",\n  \"equipamento\": \"Torno CNC\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Excluir ordem de serviço",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200 OK\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/3",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "3"
+              ]
+            },
+            "description": "Exclui uma ordem de serviço (e as peças dela). Ordem já finalizada não pode ser excluída."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/3",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "3"
+                  ]
+                },
+                "description": "Exclui uma ordem de serviço (e as peças dela). Ordem já finalizada não pode ser excluída."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"mensagem\": \"Ordem de serviço excluída com sucesso\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "7. Tratamento de Erros",
+      "item": [
+        {
+          "name": "Erro - Equipamento inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404 Not Found\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "999"
+              ]
+            },
+            "description": "Busca de um equipamento que não existe."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/999",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "999"
+                  ]
+                },
+                "description": "Busca de um equipamento que não existe."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Equipamento não encontrado\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - ID inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/abc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "abc"
+              ]
+            },
+            "description": "O ID precisa ser um número inteiro positivo."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/abc",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "abc"
+                  ]
+                },
+                "description": "O ID precisa ser um número inteiro positivo."
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"ID inválido. O ID deve ser um número inteiro positivo.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Campos obrigatórios ausentes",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Cadastro sem os campos obrigatórios. A resposta lista quais campos faltam.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Esteira Transportadora\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Cadastro sem os campos obrigatórios. A resposta lista quais campos faltam.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Esteira Transportadora\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Campos obrigatórios ausentes\",\n  \"campos\": [\n    \"modelo\",\n    \"fabricante\",\n    \"data_instalacao\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Status inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Status fora dos valores aceitos.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Esteira Transportadora\",\n  \"modelo\": \"ET-10\",\n  \"fabricante\": \"WEG\",\n  \"data_instalacao\": \"2024-02-01\",\n  \"status\": \"Quebrado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Status fora dos valores aceitos.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Esteira Transportadora\",\n  \"modelo\": \"ET-10\",\n  \"fabricante\": \"WEG\",\n  \"data_instalacao\": \"2024-02-01\",\n  \"status\": \"Quebrado\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Status inválido\",\n  \"valores_aceitos\": [\n    \"Ativo\",\n    \"Em manutenção\",\n    \"Inativo\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Ordem de serviço para equipamento inexistente (Problema 2)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404 Not Found\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "Tentativa de abrir uma ordem de serviço para um equipamento que não existe.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 999,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "Tentativa de abrir uma ordem de serviço para um equipamento que não existe.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 999,\n  \"tipo\": \"Corretiva\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Equipamento não encontrado. Não é possível abrir a ordem de serviço.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Tipo de manutenção inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico"
+              ]
+            },
+            "description": "O tipo precisa ser Preventiva ou Corretiva.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Urgente\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico"
+                  ]
+                },
+                "description": "O tipo precisa ser Preventiva ou Corretiva.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"tipo\": \"Urgente\",\n  \"responsavel\": \"Carlos Silva\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Tipo de manutenção inválido\",\n  \"valores_aceitos\": [\n    \"Preventiva\",\n    \"Corretiva\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Alterar ordem de serviço já finalizada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/ordens-servico/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "ordens-servico",
+                "2"
+              ]
+            },
+            "description": "Ordem de serviço finalizada não pode ser alterada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"responsavel\": \"João Pereira\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ordens-servico/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ordens-servico",
+                    "2"
+                  ]
+                },
+                "description": "Ordem de serviço finalizada não pode ser alterada.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"responsavel\": \"João Pereira\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Ordem de serviço já finalizada. Não pode ser alterada.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Peça em ordem de serviço finalizada",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "Não é possível registrar peça em uma ordem de serviço finalizada.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 2,\n  \"nome\": \"Vedação do cilindro\",\n  \"codigo\": \"VED-300\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 120\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "Não é possível registrar peça em uma ordem de serviço finalizada.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 2,\n  \"nome\": \"Vedação do cilindro\",\n  \"codigo\": \"VED-300\",\n  \"quantidade\": 1,\n  \"custo_unitario\": 120\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Ordem de serviço já finalizada. Não é possível alterar suas peças.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Excluir equipamento com ordens de serviço (Problema 6)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 409 Conflict\", function () {",
+                  "    pm.response.to.have.status(409);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos",
+                "1"
+              ]
+            },
+            "description": "Equipamento com ordens de serviço vinculadas não pode ser excluído (409 Conflict)."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos/1",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos",
+                    "1"
+                  ]
+                },
+                "description": "Equipamento com ordens de serviço vinculadas não pode ser excluído (409 Conflict)."
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Não é possível excluir: o equipamento possui 1 ordem(ns) de serviço vinculada(s). Altere o status para Inativo.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Severidade inválida",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/defeitos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "defeitos"
+              ]
+            },
+            "description": "A severidade precisa ser Baixo, Médio, Alto ou Crítico.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Motor aquecendo\",\n  \"severidade\": \"Grave\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/defeitos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "defeitos"
+                  ]
+                },
+                "description": "A severidade precisa ser Baixo, Médio, Alto ou Crítico.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"equipamento_id\": 1,\n  \"descricao\": \"Motor aquecendo\",\n  \"severidade\": \"Grave\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Severidade inválida\",\n  \"valores_aceitos\": [\n    \"Baixo\",\n    \"Médio\",\n    \"Alto\",\n    \"Crítico\"\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Quantidade inválida",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pecas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "pecas"
+              ]
+            },
+            "description": "A quantidade precisa ser um número inteiro maior que zero.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Parafuso M8\",\n  \"codigo\": \"PAR-M8\",\n  \"quantidade\": 0,\n  \"custo_unitario\": 1.5\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/pecas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "pecas"
+                  ]
+                },
+                "description": "A quantidade precisa ser um número inteiro maior que zero.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ordem_servico_id\": 1,\n  \"nome\": \"Parafuso M8\",\n  \"codigo\": \"PAR-M8\",\n  \"quantidade\": 0,\n  \"custo_unitario\": 1.5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"quantidade deve ser um número inteiro maior que zero\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - JSON inválido",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 400 Bad Request\", function () {",
+                  "    pm.response.to.have.status(400);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipamentos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "equipamentos"
+              ]
+            },
+            "description": "Body com JSON mal escrito (vírgula sobrando).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Torno CNC\",\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/equipamentos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "equipamentos"
+                  ]
+                },
+                "description": "Body com JSON mal escrito (vírgula sobrando).",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nome\": \"Torno CNC\",\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"JSON inválido no body da requisição\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Erro - Rota inexistente",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 404 Not Found\", function () {",
+                  "    pm.response.to.have.status(404);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/maquinas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "maquinas"
+              ]
+            },
+            "description": "Endereço que não existe na API."
+          },
+          "response": [
+            {
+              "name": "Resposta esperada",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/api/maquinas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "maquinas"
+                  ]
+                },
+                "description": "Endereço que não existe na API."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "body": "{\n  \"erro\": \"Rota não encontrada\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

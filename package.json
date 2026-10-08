@@ -1,0 +1,16 @@
+{
+  "name": "api-manutencao-industrial",
+  "version": "1.0.0",
+  "description": "API REST de Controle de Manutenção Industrial",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "zerar": "node -e \"require('fs').rmSync('manutencao.db', { force: true }); console.log('Banco apagado')\""
+  },
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}
